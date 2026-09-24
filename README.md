@@ -37,7 +37,7 @@ The app uses Google's browser-side OAuth token flow. It never needs a Google cli
    VITE_GOOGLE_CLIENT_ID=YOUR_CLIENT_ID.apps.googleusercontent.com
    ```
 
-4. For GitHub Pages, set the repository **Actions variable** `GOOGLE_CLIENT_ID` to that same client ID. This value is public by design. Never put a client secret or a private calendar URL in the Vite environment or repository.
+4. For GitHub Pages, set the repository **Actions secret** `VITE_GOOGLE_CLIENT_ID` to that same client ID, then run a new deployment. The workflow also accepts the older `GOOGLE_CLIENT_ID` secret or Actions variable. The OAuth client ID is public in the built app even when stored as a GitHub secret. Never put a Google client secret or a private calendar URL in the Vite environment or repository.
 5. In the app, tap **Connect Google**, sign in as an account with access to the shared family calendar, and choose that calendar. The account must already have the family calendar in its Google Calendar list. A calendar ID can also be entered with the app's large keyboard.
 
 Google's browser token model uses short-lived access tokens and [requires a user gesture to renew them](https://developers.google.com/identity/oauth2/web/guides/use-token-model). The board caches 14 days of events so the current week stays visible for several days when disconnected, and shows **Reconnect** to refresh. A completely unattended private-calendar refresh would require a separate trusted backend.

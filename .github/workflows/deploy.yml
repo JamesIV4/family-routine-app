@@ -43,7 +43,7 @@ jobs:
       - name: Build
         env:
           VITE_BASE_PATH: ${{ steps.pages-base.outputs.base }}
-          VITE_GOOGLE_CLIENT_ID: ${{ vars.GOOGLE_CLIENT_ID }}
+          VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID || secrets.GOOGLE_CLIENT_ID || vars.GOOGLE_CLIENT_ID }}
         run: npm run build
       - run: touch dist/.nojekyll
       - uses: actions/configure-pages@v5
