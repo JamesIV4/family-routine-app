@@ -373,7 +373,7 @@ svg { width: 1em; height: 1em; stroke-width: 2.2; flex: none; }
   .task-card.done, .task-card.compact.done { background: #edf6ef; border-color: #cfe2d5; }
   .task-card.overdue, .task-card.compact.overdue { background: #fff9f6; border-color: #e9c9c0; }
   /* Distance-reading text has a size floor; only supporting copy stays quiet. */
-  .task-time { color: var(--navy); font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .task-time { color: #5d6c82; font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
   .task-icon { background: #edf4ef; border-radius: 16px; }
   .task-icon svg { stroke-width: 1.8; }
   .task-card.overdue .task-icon { background: #fae9e1; color: #b35d47; }
