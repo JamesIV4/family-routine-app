@@ -326,8 +326,8 @@ svg { width: 1em; height: 1em; stroke-width: 2.2; flex: none; }
 @media (width > 760px) {
   :root {
     background: #eef0ec;
-    --navy: #243a47;
-    --muted: #617178;
+    --navy: #203642;
+    --muted: #52656c;
     --teal: #177c70;
     --teal-dark: #14695f;
     --mint: #eaf5ef;
@@ -342,56 +342,59 @@ svg { width: 1em; height: 1em; stroke-width: 2.2; flex: none; }
   .app-header { background: var(--card); border-color: var(--border); }
   .brand-mark { background: #ffedbe; color: #966b20; box-shadow: none; }
   .brand-mark svg { font-size: 44px; stroke-width: 2; }
-  .header-title h1 { font-size: clamp(32px, 4.3vw, 52px); font-weight: 700; letter-spacing: -.04em; line-height: 1.12; }
-  .header-title p { font-weight: 500; font-size: clamp(19px, 2.3vw, 24px); }
-  .header-right time { font-size: clamp(35px, 4.6vw, 54px); font-weight: 650; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+  .header-title h1 { font-size: clamp(32px, 4.3vw, 52px); font-weight: 700; letter-spacing: -.025em; line-height: 1.12; }
+  .header-title p { font-weight: 500; font-size: clamp(22px, 2.3vw, 25px); }
+  .header-right time { font-size: clamp(44px, 5vw, 60px); font-weight: 700; letter-spacing: -.015em; font-variant-numeric: tabular-nums; }
   .header-settings, .icon-button { flex-shrink: 0; border-radius: 16px; background: #f1f5f1; color: var(--muted); }
   .app-main { scrollbar-width: thin; scrollbar-color: #c4d1c8 transparent; scrollbar-gutter: stable; }
-  .page-content { padding-top: 30px; }
-  .eyebrow { font-size: 15px; font-weight: 650; letter-spacing: .11em; line-height: 1.5; }
-  .intro-row h2, .calendar-topline h2 { font-weight: 650; letter-spacing: -.035em; line-height: 1.16; }
-  .section-heading { font-weight: 650; }
+  .page-content { padding-top: 24px; }
+  .eyebrow { font-size: 17px; font-weight: 600; letter-spacing: .07em; line-height: 1.5; }
+  .intro-row { margin-bottom: 16px; }
+  .intro-row h2, .calendar-topline h2 { font-weight: 650; letter-spacing: -.02em; line-height: 1.2; }
+  .section-heading { font-size: 27px; font-weight: 650; }
   .section-heading svg { stroke-width: 1.8; }
 
   .bottom-nav { background: var(--card); border-color: var(--border); }
-  .bottom-nav button { background: transparent; border-color: transparent; border-radius: 18px; color: var(--muted); font-weight: 650; }
-  .bottom-nav button.active { background: var(--mint); border-color: #d4e8dc; color: var(--teal-dark); }
+  .bottom-nav button { background: transparent; border-color: transparent; border-radius: 18px; color: var(--navy); font-size: clamp(26px, 2.8vw, 30px); font-weight: 650; gap: 12px; }
+  .bottom-nav button.active { background: var(--mint); border-color: #8caf9a; color: var(--teal-dark); }
   .bottom-nav button svg { stroke-width: 1.9; }
 
-  .progress-bubble { background: var(--mint); border: 1px solid #d9eadd; color: var(--teal-dark); gap: 4px; }
-  .progress-bubble strong { font-weight: 650; font-variant-numeric: tabular-nums; }
-  .progress-bubble span { font-size: 16px; font-weight: 550; }
-  .progress-track { height: 8px; background: #e5ece6; }
-  .alert-controls { gap: 10px; margin: 22px 0; }
-  .soft-toggle { border-width: 1px; border-color: var(--border); font-size: 18px; font-weight: 600; min-height: 54px; }
+  .progress-bubble { width: 84px; height: 84px; background: var(--mint); border: 1px solid #d9eadd; color: var(--teal-dark); gap: 4px; }
+  .progress-bubble strong { font-size: 32px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .progress-bubble span { font-size: 18px; font-weight: 550; }
+  .progress-track { height: 12px; background: #e5ece6; }
+  .alert-controls { gap: 10px; margin: 16px 0; }
+  .soft-toggle { border-width: 1px; border-color: var(--border); font-size: 20px; font-weight: 600; min-height: 54px; }
   .soft-toggle.selected { background: var(--mint); border-color: #cce2d5; }
   .before-card { background: #f9f5e9; border: 1px solid #ebe3cc; border-radius: 22px; }
   .before-card .section-heading svg { color: #9a772d; }
-  .deadline-note { color: #806b41; font-weight: 500; line-height: 1.4; padding-top: 12px; }
+  .deadline-note { color: #715d32; font-size: 20px; font-weight: 550; line-height: 1.4; padding-top: 12px; }
   .task-card { border-width: 1px; border-radius: 18px; box-shadow: 0 2px 4px rgba(36, 58, 47, .025); }
   .task-card.done, .task-card.compact.done { background: #edf6ef; border-color: #cfe2d5; }
   .task-card.overdue, .task-card.compact.overdue { background: #fff9f6; border-color: #e9c9c0; }
-  .task-time { font-size: 19px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  /* Distance-reading text has a size floor; only supporting copy stays quiet. */
+  .task-time { color: var(--navy); font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
   .task-icon { background: #edf4ef; border-radius: 16px; }
   .task-icon svg { stroke-width: 1.8; }
   .task-card.overdue .task-icon { background: #fae9e1; color: #b35d47; }
   .task-card.done .task-icon { background: #dceee0; }
   .task-copy { gap: 5px; overflow-wrap: anywhere; }
-  .task-copy strong { font-size: clamp(23px, 2.55vw, 29px); font-weight: 650; line-height: 1.22; }
-  .task-copy small { font-weight: 450; line-height: 1.4; }
-  .late-label { background: #fbe9e2; color: #a44836; font-size: 14px; font-weight: 650; padding: 7px 11px; }
-  .big-check { border-width: 2px; border-color: #a9b9af; border-radius: 16px; }
-  .task-card.overdue .big-check { border-color: #d9a294; }
-  .now-marker { font-size: 18px; font-weight: 650; }
-  .now-marker::before, .now-marker::after { height: 2px; }
+  .task-copy strong { font-size: clamp(28px, 3vw, 32px); font-weight: 700; line-height: 1.25; }
+  .task-copy small { font-size: 20px; font-weight: 500; line-height: 1.4; }
+  .late-label { background: #fbe9e2; color: #963c2c; font-size: 18px; font-weight: 650; padding: 7px 11px; }
+  .big-check { border-width: 3px; border-color: #728b7d; border-radius: 16px; }
+  .big-check.checked { border-color: var(--teal); }
+  .task-card.overdue .big-check { border-color: #b36a58; }
+  .now-marker { color: #805a08; font-size: 22px; font-weight: 700; }
+  .now-marker::before, .now-marker::after { height: 4px; }
   .now-marker span { background: #fff0ca; }
-  .gentle-reminder { background: #edf4ed; font-weight: 500; font-size: 20px; line-height: 1.5; }
+  .gentle-reminder { background: #edf4ed; font-weight: 500; font-size: 22px; line-height: 1.5; }
 
   .add-need-bar { background: #edf4ef; border: 1px solid #dfe9e1; border-radius: 22px; }
-  .add-need-button { color: var(--teal-dark); font-weight: 600; font-size: 27px; }
+  .add-need-button { color: var(--teal-dark); font-weight: 650; font-size: 30px; }
   .add-voice-button { font-weight: 600; }
-  .requester-label { font-size: 20px; font-weight: 600; }
-  .requester-chip { border-width: 1px; border-color: var(--border); font-weight: 600; }
+  .requester-label { font-size: 22px; font-weight: 600; }
+  .requester-chip { border-width: 1px; border-color: var(--border); font-size: 20px; font-weight: 600; }
   .requester-chip span { font-weight: 600; flex-shrink: 0; }
   .requester-chip.selected { background: var(--mint); border-color: #7cb599; box-shadow: inset 0 0 0 1px #7cb599; }
   .needs-section { background: #f0f6f0; border: 1px solid #dee9df; border-radius: 22px; padding: 16px; }
@@ -399,26 +402,26 @@ svg { width: 1em; height: 1em; stroke-width: 2.2; flex: none; }
   .needs-heading { gap: 12px; padding-bottom: 14px; }
   .needs-heading-icon { background: #e0eee1; color: var(--teal-dark); border-radius: 15px; }
   .house .needs-heading-icon { background: #f2e6c5; color: #8c702f; }
-  .needs-heading h3 { font-size: 27px; font-weight: 650; }
-  .needs-count { font-size: 16px; font-weight: 550; white-space: nowrap; background: rgba(255, 255, 255, .8); padding: 6px 12px; border-radius: 100px; }
+  .needs-heading h3 { font-size: 28px; font-weight: 650; }
+  .needs-count { font-size: 20px; font-weight: 600; white-space: nowrap; background: rgba(255, 255, 255, .8); padding: 6px 12px; border-radius: 100px; }
   .need-row { border: 1px solid #e7ece7; border-radius: 16px; }
   .need-row.completed { opacity: 1; background: #f7faf7; }
   .need-row.completed .need-main strong { color: var(--muted); }
-  .need-check { border-width: 2px; border-color: #a2b3a8; }
+  .need-check { border-width: 3px; border-color: #728b7d; }
   .need-check.checked { border-color: var(--teal); }
   .need-main { padding: 5px 0; overflow-wrap: anywhere; }
-  .need-main strong { font-size: 26px; font-weight: 600; line-height: 1.3; }
-  .need-main span { font-weight: 450; line-height: 1.4; }
+  .need-main strong { font-size: 30px; font-weight: 700; line-height: 1.3; }
+  .need-main span { font-size: 20px; font-weight: 500; line-height: 1.4; }
   .need-edit { flex-shrink: 0; color: var(--muted); background: #f3f6f2; }
   .needs-empty { padding: 28px; font-size: 20px; line-height: 1.5; color: var(--muted); }
 
   .calendar-topline > div, .event-copy, .week-events, .week-event strong, .calendar-choices strong, .settings-row span { min-width: 0; overflow-wrap: anywhere; }
   .calendar-source { min-width: 0; flex-shrink: 0; border-width: 1px; border-color: #d4e5da; background: var(--mint); font-weight: 600; border-radius: 16px; }
   .segmented { background: #eaf0e9; border-radius: 18px; }
-  .segmented button { font-weight: 600; font-size: 23px; border-radius: 13px; }
+  .segmented button { font-weight: 650; font-size: 26px; border-radius: 13px; }
   .segmented button.active { box-shadow: 0 2px 5px rgba(20, 80, 58, .12); }
   .date-controls button { border-width: 1px; border-color: var(--border); border-radius: 15px; }
-  .date-controls .jump-today { font-weight: 600; }
+  .date-controls .jump-today { font-size: 20px; font-weight: 600; }
   .connection-card { border-width: 1px; border-color: var(--border); border-radius: 22px; }
   .connection-card h3 { font-weight: 650; font-size: 28px; }
   .connection-card p { font-size: 20px; line-height: 1.55; overflow-wrap: anywhere; }
@@ -438,21 +441,24 @@ svg { width: 1em; height: 1em; stroke-width: 2.2; flex: none; }
   .event-card.event-color-1, .week-event.event-color-1,
   .event-card.event-color-2, .week-event.event-color-2,
   .event-card.event-color-3, .week-event.event-color-3 { background: var(--event-background); }
-  .event-card { grid-template-columns: 112px 12px minmax(0, 1fr); border-radius: 18px; }
-  .event-time { font-size: 23px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .event-card { grid-template-columns: 128px 12px minmax(0, 1fr); border-radius: 18px; }
+  .event-time { font-size: 28px; font-weight: 700; line-height: 1.25; font-variant-numeric: tabular-nums; }
   .event-card .event-dot { width: 12px; height: 12px; background: var(--event-accent); }
-  .event-copy strong { font-weight: 650; font-size: 27px; line-height: 1.3; }
-  .event-copy span { color: #4e626a; font-weight: 450; line-height: 1.4; }
+  .event-copy strong { font-weight: 700; font-size: 32px; line-height: 1.3; }
+  .event-copy span { color: #4e626a; font-size: 21px; font-weight: 500; line-height: 1.4; }
   .calendar-empty { border: 1px dashed #c7d5ca; border-radius: 20px; padding: 28px; background: #f5f8f2; }
   .calendar-empty strong { font-weight: 600; }
-  .week-day { grid-template-columns: 120px minmax(0, 1fr); border-width: 1px; border-color: var(--border); border-radius: 18px; }
+  .week-day { grid-template-columns: 144px minmax(0, 1fr); border-width: 1px; border-color: var(--border); border-radius: 18px; }
   .week-date { background: #f1f5ef; gap: 3px; }
   .is-today .week-date { background: #e0efe1; }
   .week-day.is-today { border-color: #9cc9ad; background: #f6faf5; }
-  .week-date span, .week-date small, .week-date em { font-weight: 600; }
-  .week-date strong { font-weight: 650; }
-  .week-event span { flex-shrink: 0; color: #4e626a; font-weight: 550; }
-  .week-event strong { font-weight: 600; line-height: 1.35; }
+  .week-date span, .week-date small { font-size: 20px; font-weight: 600; }
+  .week-date em { font-size: 16px; font-weight: 650; }
+  .week-date strong { font-size: 46px; font-weight: 700; }
+  .week-events { gap: 10px; }
+  .week-event { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px; padding: 14px 15px; }
+  .week-event span { color: var(--navy); font-size: 23px; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .week-event strong { font-size: 26px; font-weight: 700; line-height: 1.3; }
   .week-empty { color: var(--muted); font-weight: 450; }
 
   .dialog-backdrop { background: rgba(27, 43, 37, .35); }
