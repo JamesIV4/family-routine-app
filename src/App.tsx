@@ -90,7 +90,7 @@ export default function App() {
 
   function choosePage(next: Page) {
     setPage(next)
-    document.querySelector('.app-main')?.scrollTo({ top: 0, behavior: 'smooth' })
+    document.querySelector('.app-main')?.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
   }
 
   return <div className="app-shell">

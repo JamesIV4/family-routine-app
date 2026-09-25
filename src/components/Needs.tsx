@@ -20,9 +20,10 @@ function getSpeechRecognition(): SpeechRecognitionConstructor | undefined {
   return speechWindow.SpeechRecognition || speechWindow.webkitSpeechRecognition
 }
 
-function NeedRow({ need, onToggle, onEdit }: { need: FamilyNeed; onToggle: () => void; onEdit: () => void }) {
-  return <div className={`need-row ${need.completedAt ? 'completed' : ''}`}>
-    <button type="button" className={`need-check ${need.completedAt ? 'checked' : ''}`} aria-label={`${need.completedAt ? 'Mark incomplete' : 'Complete'} ${need.text}`} onClick={onToggle}>{need.completedAt && <Check />}</button>
+function NeedRow({ need, onToggle, onEdit, isNew }: { need: FamilyNeed; onToggle: () => void; onEdit: () => void; isNew: boolean }) {
+  const [completionPulse, setCompletionPulse] = useState(0)
+  return <div className={`need-row ${need.completedAt ? 'completed' : ''} ${isNew ? 'new-need' : ''}`}>
+    <button type="button" className={`need-check ${need.completedAt ? 'checked' : ''}`} aria-label={`${need.completedAt ? 'Mark incomplete' : 'Complete'} ${need.text}`} onClick={() => { if (!need.completedAt) setCompletionPulse((value) => value + 1); onToggle() }}>{need.completedAt && <Check key={completionPulse} className={completionPulse ? 'completion-pop' : undefined} />}</button>
     <button type="button" className="need-main" onClick={onEdit}>
       <strong>{need.text}</strong><span>Requested by {need.requestedBy}</span>
     </button>
@@ -43,6 +44,7 @@ export default function Needs() {
   const [draft, setDraft] = useState('')
   const [listening, setListening] = useState(false)
   const [voiceError, setVoiceError] = useState('')
+  const [newNeedId, setNewNeedId] = useState('')
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null)
 
   function openAdd() {
@@ -96,7 +98,7 @@ export default function Needs() {
   function save() {
     if (!draft.trim()) return
     if (editor === 'edit') updateNeed(editingId, draft, category, requester)
-    else addNeed(draft, category, requester)
+    else setNewNeedId(addNeed(draft, category, requester))
     closeEditor()
   }
 
@@ -105,7 +107,7 @@ export default function Needs() {
     const Icon = sectionCategory === 'groceries' ? ShoppingCart : Home
     return <section className={`needs-section ${sectionCategory}`} key={sectionCategory}>
       <div className="needs-heading"><span className="needs-heading-icon"><Icon /></span><h3>{title}</h3><span className="needs-count">{items.filter((need) => !need.completedAt).length} open</span></div>
-      {items.length ? items.map((need) => <NeedRow key={need.id} need={need} onToggle={() => toggleNeed(need.id)} onEdit={() => openEdit(need)} />) : <p className="needs-empty">Nothing here yet. Tap Add a need.</p>}
+      {items.length ? items.map((need) => <NeedRow key={need.id} need={need} isNew={need.id === newNeedId} onToggle={() => toggleNeed(need.id)} onEdit={() => openEdit(need)} />) : <p className="needs-empty">Nothing here yet. Tap Add a need.</p>}
     </section>
   }
 

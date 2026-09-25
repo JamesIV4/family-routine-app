@@ -260,6 +260,13 @@ svg { width: 1em; height: 1em; stroke-width: 2.2; flex: none; }
 .settings-row em { font-style: normal; color: var(--teal-dark); background: #e7f6f3; border-radius: 100px; padding: 8px 13px; font-size: 17px; font-weight: 810; }
 .settings-dialog .settings-footnote { font-size: 17px; margin-top: 20px; }
 
+.celebration-toast { position: fixed; z-index: 41; bottom: calc(env(safe-area-inset-bottom) + 124px); left: 50%; transform: translateX(-50%); width: max-content; max-width: min(660px, calc(100% - 32px)); padding: 20px 26px; display: flex; align-items: center; gap: 16px; background: #fff8df; color: #634b13; border: 2px solid #e5cd82; border-radius: 24px; box-shadow: 0 12px 40px rgba(64, 55, 20, .15); pointer-events: none; }
+.celebration-toast:empty { display: none; }
+.celebration-toast > svg { font-size: 38px; color: #947015; }
+.celebration-toast span { display: flex; flex-direction: column; gap: 5px; }
+.celebration-toast strong { font-size: 28px; font-weight: 700; line-height: 1.2; }
+.celebration-toast small { font-size: 20px; line-height: 1.35; }
+
 @media (max-width: 760px) {
   .app-header { grid-template-columns: 54px minmax(0, 1fr) auto; gap: 10px; padding: calc(env(safe-area-inset-top) + 12px) 15px 13px; }
   .brand-mark { width: 50px; height: 50px; }
@@ -359,8 +366,8 @@ svg { width: 1em; height: 1em; stroke-width: 2.2; flex: none; }
   .bottom-nav button.active { background: var(--mint); border-color: #8caf9a; color: var(--teal-dark); }
   .bottom-nav button svg { stroke-width: 1.9; }
 
-  .progress-bubble { width: 84px; height: 84px; background: var(--mint); border: 1px solid #d9eadd; color: var(--teal-dark); gap: 4px; }
-  .progress-bubble strong { font-size: 32px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .progress-bubble { width: 112px; height: 112px; padding: 10px; background: var(--mint); border: 1px solid #d9eadd; color: var(--teal-dark); gap: 4px; }
+  .progress-bubble strong { font-size: 32px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .progress-bubble span { font-size: 18px; font-weight: 550; }
   .progress-track { height: 12px; background: #e5ece6; }
   .alert-controls { gap: 10px; margin: 16px 0; }
@@ -488,6 +495,41 @@ svg { width: 1em; height: 1em; stroke-width: 2.2; flex: none; }
   .settings-row em { font-weight: 600; background: #f0f2ef; color: var(--muted); }
   .settings-row[aria-pressed="true"] em { background: var(--mint); color: var(--teal-dark); }
 
+  /* Brief feedback on actions; keep the words still and the wall display calm. */
+  .page-content { animation: pageWelcome .22s ease-out; }
+  .bottom-nav button.active svg { animation: iconHello .45s ease-out; }
+  .text-dialog, .picker-dialog, .settings-dialog { animation: dialogWelcome .22s ease-out; }
+  .task-card, .need-check, .soft-toggle, .requester-chip, .choice-row button, .bottom-nav button { transition: background-color .2s ease, border-color .2s ease, color .2s ease; }
+  .task-icon, .keyboard-key, .primary-button, .add-need-button { transition: transform .15s ease; }
+  .task-card:active .task-icon, .keyboard-key:active, .primary-button:active, .add-need-button:active { transform: scale(.96); }
+  .completion-pop { animation: happyCheck .5s cubic-bezier(.2, .8, .3, 1); transform-origin: center; }
+  .big-check.completion-pop svg { stroke-dasharray: 32; animation: checkDraw .35s ease-out; }
+  .progress-pop { animation: progressCheer .4s ease-out; }
+  .progress-track span { transition: width .45s cubic-bezier(.2, .8, .3, 1), background-color .3s ease; }
+  .progress-bubble.all-done { background: #fff0bc; border-color: #e5ca75; color: #715216; }
+  .progress-bubble.all-done span { color: #715216; }
+  .progress-track.all-done span { background: #b1841c; }
+  .need-row.new-need { animation: needWelcome .45s ease-out; }
+  .celebration-toast { animation: celebrationWelcome .4s ease-out; }
+  .sync-row button:disabled svg { animation: refreshTurn 1.2s linear infinite; }
+
+  /* Only the next overdue icon nudges, three times, then it rests. */
+  .task-card.overdue.alerting { animation: none; }
+  .task-card.needs-attention .task-icon svg { animation: gentleNudge 9s ease-in-out 3; }
+  .screen-flash { background: transparent; animation-name: warmAttention; }
+
+  @keyframes pageWelcome { from { opacity: .6; } to { opacity: 1; } }
+  @keyframes iconHello { 0%, 100% { transform: translateY(0); } 45% { transform: translateY(-4px); } }
+  @keyframes dialogWelcome { from { opacity: .6; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes happyCheck { 0% { transform: scale(.8); } 45% { transform: scale(1.15); } 75% { transform: scale(.97); } 100% { transform: scale(1); } }
+  @keyframes checkDraw { from { stroke-dashoffset: 32; } to { stroke-dashoffset: 0; } }
+  @keyframes progressCheer { 0%, 100% { transform: scale(1); } 45% { transform: scale(1.12); } }
+  @keyframes needWelcome { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes celebrationWelcome { from { opacity: 0; transform: translate(-50%, 12px); } to { opacity: 1; transform: translate(-50%, 0); } }
+  @keyframes refreshTurn { to { transform: rotate(360deg); } }
+  @keyframes gentleNudge { 0%, 12%, 100% { transform: rotate(0); } 3% { transform: rotate(-8deg); } 6% { transform: rotate(6deg); } 9% { transform: rotate(-3deg); } }
+  @keyframes warmAttention { 0%, 100% { box-shadow: inset 0 0 0 0 rgba(244, 185, 63, 0); } 50% { box-shadow: inset 0 0 0 12px rgba(244, 185, 63, .5); } }
+
   @media (hover: hover) {
     .bottom-nav button:hover { background: #f0f5ed; border-color: #d4e8dc; color: var(--teal-dark); }
     .task-card:hover { border-color: #88b59a; }
@@ -498,5 +540,6 @@ svg { width: 1em; height: 1em; stroke-width: 2.2; flex: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+  .screen-flash { display: none; }
 }
